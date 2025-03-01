@@ -9,6 +9,20 @@ class bossMonsterDict:
         self.spd = spd
         self.atk = atk
 
+    names = ["The Interspacial Galactor",
+             "The Draconic Maelor",
+             "The Gawd Dalosius",
+             "The Dwarf Gitaro",
+             "The Android Mechnyto",
+             "The Furry Sven",
+             "The Dark Veilshadow",
+             "The Holy Nightingale",
+             "The Demonic Madapple",
+             "The Vermilion Night Stalker",
+             "The Necrotic Dreadmawh",
+             "The Evil Vileheart",
+             "The Pretty Normal Guy Karl"]
+
     def __str__(self):
         return f"{self.name} Level [{self.lvl}]\nHP:[{self.hp}]\nDEF:[{self.df}]\nSPD:[{self.spd}]\nATK:[{self.atk}]"
 

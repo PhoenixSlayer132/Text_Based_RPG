@@ -18,11 +18,11 @@ class monsterDict:
             "Mechnyto",
             "Sven",
             "Veilshadow",
-            "Nighting Gale",
+            "Nightingale",
             "Madapple",
-            "The Vermillion Night Stalker",
+            "Night Stalker",
             "Dreadmawh",
-            "Vile Heart"]
+            "Vileheart"]
 
     def __str__(self):
         return f"{self.name} Level [{self.lvl}]\nHP:[{self.hp}]\nDEF:[{self.df}]\nSPD:[{self.spd}]\nATK:[{self.atk}]"

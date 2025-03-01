@@ -1,7 +1,6 @@
 import random
 from time import sleep
 
-
 class search:
     searching = True
     while searching:

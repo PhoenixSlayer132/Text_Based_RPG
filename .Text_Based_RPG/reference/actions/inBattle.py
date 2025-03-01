@@ -6,12 +6,15 @@ class battle:
     def startBattle(self, monster, player):
         if monster.spd > player.spd:
             print("Catching you off guard, the Monster takes initiative!")
+
             self.monsterInit(player, monster)
         elif monster.spd < player.spd:
             print("You caught the monster off guard! You take the initiative!")
+
             self.playerInit(player, monster)
         else:
             print("You both notice each other at the same time!")
+
             if random.randint(1, 4) % 2 == 0:
                 print("You were just slightly faster!")
                 self.playerInit(player, monster)
