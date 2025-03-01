@@ -1,0 +1,2 @@
+user = None
+opponent = None

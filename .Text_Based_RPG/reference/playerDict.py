@@ -14,18 +14,19 @@ class player:
     def __str__(self):
         return f"{self.name} Level [{self.lvl}]\nHP:[{self.hp}]\nDEF:[{self.df}]\nSPD:[{self.spd}]\nATK:[{self.atk}]"
 
-    def Attack(self, target):
-        if self.atk < target.df:
+    @classmethod
+    def Attack(self, target, user):
+        if user.atk < target.df:
             attacks.ineffectiveAttack()
         else:
-            attacks.effectiveAttack(target, self.atk)
-
-    def Defend(self, dmg):
-        if self.df < dmg:
-            attacks.effectiveAttack(self.hp, (self.df - dmg))
+            attacks.effectiveAttack(target, user.atk)
+    @classmethod
+    def Defend(self, dmg, user):
+        if user.df < dmg:
+            attacks.effectiveAttack(user, abs(user.df - dmg))
         else:
             attacks.ineffectiveAttack()
-
+    @classmethod
     def Observe(self, target):
         if random.randint(1, 10) > 3:
             print(target)

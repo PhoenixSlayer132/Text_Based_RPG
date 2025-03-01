@@ -1,26 +1,19 @@
 import random
 from time import sleep
 
+import config
 from reference.playerDict import player
+from reference.actions.forage import search
 from reference.actions import inBattle
-from reference.monsterDict import monsterDict
-from reference.actions import search
 
-battling = False
 
-class main:
-
+class RPG:
     charName = str(input("Input a name for your character: "))
 
-    user = player(charName, 1, 20, random.randint(1, 5), random.randint(1, 5), random.randint(3, 7))
-    print(user)
+    config.user = player(charName, 1, 20, random.randint(1, 5), random.randint(1, 5), random.randint(3, 7))
+    print(f"\nLets check out our Stats!\n\n{config.user}\n")
+    sleep(1.5)
 
-    print("Lets start searching!")
-    sleep(3.0)
+    search()
 
-    search.search()
-    opponent = monsterDict.RandomOpponent()
-    print(f"A monster has appeared!\n{opponent.name} [{opponent.lvl}]")
-
-    inBattle.battle.startBattle(opponent, user)
-
+    inBattle.battle.startBattle(config.opponent, config.user)
