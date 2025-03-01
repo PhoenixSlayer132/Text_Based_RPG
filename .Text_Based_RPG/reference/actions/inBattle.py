@@ -35,12 +35,11 @@ class battle:
     @classmethod
     def lostBattle(self):
         print("Oh no! You Lost!\nExecute Order 77.")
-        inBattle = False
+        exit()
 
     @classmethod
     def wonBattle(self):
-        print("Yay! You Won!\nExecute Order 66.")
-        inBattle = False
+        print("Yay! You Won!")
         var = str(input("Would you like to continue playing? (Yes/No)"))
         if var.lower() == "yes":
             search()
@@ -48,26 +47,18 @@ class battle:
     @classmethod
     def playerInit(self, player, opponent):
         while player.hp != 0 and opponent.hp != 0:
-            self.playerTurn()
+            if player.hp != 0:
+                self.playerTurn()
             if opponent.hp != 0:
                 self.opponentTurn()
-
-        if player.hp <= 0:
-            self.lostBattle()
-        elif opponent.hp <= 0:
-            self.wonBattle()
 
     @classmethod
     def monsterInit(self, player, opponent):
         while player.hp != 0 and opponent.hp != 0:
-            self.opponentTurn()
+            if opponent.hp != 0:
+                self.opponentTurn()
             if player.hp != 0:
                 self.playerTurn()
-
-        if player.hp <= 0:
-            self.lostBattle()
-        elif opponent.hp <= 0:
-            self.wonBattle()
 
     @classmethod
     def playerTurn(self):
@@ -83,7 +74,7 @@ class battle:
             elif choice.lower() == "defend":
                 userDefending = True
                 if userDefending and not monstDefending:
-                    player.Defend(config.opponent.atk, config.user)
+                    player.Defend(config.opponent.atk, config.user, config.opponent)
                     var = False
                 else:
                     print("The Monster also Defended!\n")
@@ -111,6 +102,6 @@ class battle:
             print("It chose to Defend!")
             monstDefending = True
             if monstDefending and not userDefending:
-                monster.Defend(config.user.atk, config.opponent)
+                monster.Defend(config.user.atk, config.opponent, config.user)
             else:
                 print("The Player also Defended!\n")

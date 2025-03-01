@@ -10,7 +10,7 @@ from reference.actions import inBattle
 class RPG:
     charName = str(input("Input a name for your character: "))
 
-    config.user = player(charName, 1, 20, random.randint(1, 5), random.randint(1, 5), random.randint(3, 7))
+    config.user = player(charName, 1, 20, random.randint(1, 5), random.randint(1, 5), random.randint(3, 7), "player")
     print(f"\nLets check out our Stats!\n\n{config.user}\n")
     sleep(1.5)
 
