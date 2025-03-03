@@ -25,7 +25,7 @@ class bossMonsterDict:
              "The Pretty Normal Guy Karl"]
 
     def __str__(self):
-        return f"{self.name} Level [{self.lvl}]\nHP:[{self.hp}]\nDEF:[{self.df}]\nSPD:[{self.spd}]\nATK:[{self.atk}]"
+        return f"{self.name} Level [{self.lvl}]\nHP:[{self.hp}]\nDEF:[{self.df}]\nSPD:[{self.spd}]\nATK:[{self.atk}]\n[[BOSS]]"
 
     def Attack(self, target, monst):
         if self.atk < target.df:

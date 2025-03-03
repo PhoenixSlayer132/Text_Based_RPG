@@ -1,0 +1,13 @@
+TO DO:
+  - Boss Monsters
+  - Save Files
+  - Create Application
+
+ONGOING:
+  = Defend Action
+
+DONE:
+  + Continuation
+  + Monster Overhaul
+  + Player Leveling System
+  + TO-DO List

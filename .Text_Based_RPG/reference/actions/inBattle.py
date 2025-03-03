@@ -10,27 +10,29 @@ userDefending = False
 monstDefending = False
 
 class battle:
-    @classmethod
-    def startBattle(self, monster, player):
+    @staticmethod
+    def startBattle(monster, player):
         if monster.spd > player.spd:
             print("Catching you off guard, the Monster takes initiative!")
             sleep(2.0)
-            self.monsterInit(player, monster)
+            battle.monsterInit(player, monster)
         elif monster.spd < player.spd:
             print("You caught the monster off guard! You take the initiative!")
             sleep(1.0)
-            self.playerInit(player, monster)
+            battle.playerInit(player, monster)
         else:
             print("You both notice each other at the same time!")
 
             if random.randint(1, 4) % 2 == 0:
                 print("But you were just slightly faster!")
                 sleep(1.0)
-                self.playerInit(player, monster)
+                battle.playerInit(player, monster)
             else:
                 print("But the monster was just slightly faster!")
                 sleep(1.0)
-                self.monsterInit(player, monster)
+                battle.monsterInit(player, monster)
+
+
 
     @classmethod
     def lostBattle(self):
@@ -40,9 +42,14 @@ class battle:
     @classmethod
     def wonBattle(self):
         print("Yay! You Won!")
+        self.levelUp(config.opponent)
+        config.opponent = None
         var = str(input("Would you like to continue playing? (Yes/No)"))
         if var.lower() == "yes":
             search()
+        else:
+            print("Ending Program.")
+            exit()
 
     @classmethod
     def playerInit(self, player, opponent):
@@ -85,7 +92,6 @@ class battle:
             else:
                 print("Invalid Choice!")
 
-
     @classmethod
     def opponentTurn(self):
         global monstDefending
@@ -105,3 +111,16 @@ class battle:
                 monster.Defend(config.user.atk, config.opponent, config.user)
             else:
                 print("The Player also Defended!\n")
+
+    @classmethod
+    def levelUp(self, opponent):
+        leveled = False
+        config.levelMeter += opponent.lvl * 0.7 if opponent.lvl >= 3 else opponent.lvl * 0.4
+        while config.levelMeter >= 1.0:
+            config.playerLVL += 1
+            config.levelMeter -= 1.0
+            leveled = True
+        if leveled:
+            print("You leveled up!")
+            config.lvlStats()
+            print(f"{config.user}")

@@ -1,6 +1,10 @@
+from time import sleep
+
+import config
 import random
 
 from .actions.attacks import attacks
+
 
 class player:
     def __init__(self, name, lvl, hp, df, spd, atk, TYPE):
@@ -33,3 +37,27 @@ class player:
             print(target)
         else:
             print("Oh no! You failed at observing the enemy!")
+
+    # For Application Development #
+    def SLDFile(self):
+        def saveData():
+            print()
+
+        def loadData():
+            print()
+
+        def delData():
+            print()
+
+        self.saveDat = saveData
+        self.loadDat = loadData
+        self.delDat = delData
+
+    @classmethod
+    def characterCreation(self):
+        charName = str(input("Input a name for your character: "))
+
+        config.user = player(charName, config.basePlayerLvl, config.basePlayerHP, config.basePlayerDF, config.basePlayerSPD, config.basePlayerATK, "player")
+        print(f"\nLets check out our Stats!\n\n{config.user}\n")
+        sleep(1.5)
+

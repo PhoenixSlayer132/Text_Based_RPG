@@ -1,5 +1,6 @@
 import random
 
+import config
 from .actions.attacks import attacks
 
 class monster:
@@ -12,18 +13,22 @@ class monster:
         self.atk = atk
         self.TYPE = TYPE
 
-    names = ["Galactor",
-            "Maelor",
-            "Daelon",
-            "Gitaro",
-            "Mechnyto",
-            "Sven",
-            "Veilshadow",
-            "Nightingale",
-            "Madapple",
-            "Night Stalker",
-            "Dreadmawh",
-            "Vileheart"]
+    names = ["Goblin",
+             "Wolf",
+             "Hyena",
+             "Karl",
+             "Galactor",
+             "Maelor",
+             "Dalosius",
+             "Gitaro",
+             "Mechnyto",
+             "Sven",
+             "Veilshadow",
+             "Nightingale",
+             "Madapple",
+             "Night Stalker",
+             "Dreadmawh",
+             "Vileheart"]
 
     def __str__(self):
         return f"{self.name} Level [{self.lvl}]\nHP:[{self.hp}]\nDEF:[{self.df}]\nSPD:[{self.spd}]\nATK:[{self.atk}]"
@@ -34,6 +39,7 @@ class monster:
             attacks.ineffectiveAttack()
         else:
             attacks.effectiveAttack(player, monst.atk, monst)
+
     @classmethod
     def Defend(self, dmg, monst, player):
         if monst.df < dmg:
@@ -42,5 +48,13 @@ class monster:
             attacks.ineffectiveAttack()
 
     @classmethod
-    def RandomOpponent(self):
-        return monster(self.names[random.randint(0, len(self.names) - 1)], random.randint(1, 10), random.randint(20, 100), random.randint(3, 7), random.randint(3, 7), random.randint(3, 7), "monster")
+    def RandomOpponentE(self):
+        return monster(self.names[random.randint(1, 4)], config.monstELvl, config.monstEHP, config.monstEDF, config.monstESPD, config.monstEATK, "monster")
+
+    @classmethod
+    def RandomOpponentB(self):
+        return monster(self.names[random.randint(5, len(self.names) - 7)], config.monstBLvl, config.monstBHP, config.monstBDF, config.monstBSPD, config.monstBATK, "monster")
+
+    @classmethod
+    def RandomOpponentI(self):
+        return monster(self.names[random.randint(8, len(self.names) - 1)], config.monstILvl, config.monstIHP, config.monstIDF, config.monstISPD, config.monstIATK, "monster")

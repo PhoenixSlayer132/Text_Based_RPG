@@ -17,5 +17,4 @@ class attacks:
                     actions.inBattle.battle.lostBattle()
                 else:
                     config.searching = True
-                    config.opponent = None
                     actions.inBattle.battle.wonBattle()
