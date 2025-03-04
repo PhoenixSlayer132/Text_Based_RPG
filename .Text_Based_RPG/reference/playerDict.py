@@ -4,6 +4,7 @@ import config
 import random
 
 from .actions.attacks import attacks
+import reference
 
 
 class player:
@@ -21,20 +22,31 @@ class player:
 
     @classmethod
     def Attack(self, target, user):
-        if user.atk < target.df:
-            attacks.ineffectiveAttack()
+        config.playerDefending = False
+        if not config.monsterDefending:
+            if user.atk < target.df:
+                attacks.ineffectiveAttack()
+            elif user.atk == target.df:
+                attacks.neutralAttack(target, user, user)
+            else:
+                attacks.effectiveAttack(target, user.atk, user)
         else:
-            attacks.effectiveAttack(target, user.atk, user)
+            config.monsterDefending = False
+            if target.df < user.atk:
+                attacks.neutralAttack(target, user, user)
+            elif target.df >= user.atk:
+                attacks.ineffectiveAttack()
+
     @classmethod
-    def Defend(self, dmg, user, target):
-        if user.df < dmg:
-            attacks.effectiveAttack(user, abs(user.df - dmg), target)
-        else:
-            attacks.ineffectiveAttack()
+    def Defend(self):
+        if config.playerInit:
+            config.playerDefending = True
+            config.playerInit = False
+
     @classmethod
     def Observe(self, target):
-        if random.randint(1, 10) > 3:
-            print(target)
+        if random.randint(1, 10) > 2:
+            print(f"\n{target}\n")
         else:
             print("Oh no! You failed at observing the enemy!")
 
@@ -58,6 +70,6 @@ class player:
         charName = str(input("Input a name for your character: "))
 
         config.user = player(charName, config.basePlayerLvl, config.basePlayerHP, config.basePlayerDF, config.basePlayerSPD, config.basePlayerATK, "player")
-        print(f"\nLets check out our Stats!\n\n{config.user}\n")
+        print(f"\nLets check out our Stats!\n\n{config.user}\n\nIf you ever want to look at your stats,\njust type [Stats] when in battle!")
         sleep(1.5)
 

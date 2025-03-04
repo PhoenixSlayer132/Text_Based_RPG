@@ -6,6 +6,10 @@ opponent = None
 
 # Misc #
 searching = True
+playerDefending = False
+monsterDefending = False
+playerInit = False
+monsterInit = False
 
 # Methods #
 startBat = None
@@ -17,44 +21,67 @@ basePlayerDF = random.randint(3, 5)
 basePlayerSPD = random.randint(3, 5)
 basePlayerATK = random.randint(3, 7)
 
+# Leveling System #
+levelMeter = 0.0
+playerLVL = 1
+
+def lvlStats():
+    user.lvl = playerLVL
+    user.hp = basePlayerHP * playerLVL
+    user.df = basePlayerDF * playerLVL
+    user.spd = basePlayerSPD * playerLVL
+    user.atk = basePlayerATK * playerLVL
+
 # Monster Stats #
 ## Entry
 monstELvl = 1
 monstEHP = random.randint(15, 30)
-monstEDF = random.randint(1, 3)
+monstEDF = random.randint(1, 2)
 monstESPD = random.randint(1, 5)
 monstEATK = random.randint(1, 5)
+
 ## Beginner
 monstBLvl = random.randint(1, 3)
 monstBHP = random.randint(15, 30) * monstBLvl
-monstBDF = random.randint(3, 7) * monstBLvl
+monstBDF = random.randint(1, 5) * monstBLvl
 monstBSPD = random.randint(3, 7) * monstBLvl
 monstBATK = random.randint(3, 7) * monstBLvl
+
 ## Intermediate
 monstILvl = random.randint(4, 6)
 monstIHP = random.randint(20, 35) * monstILvl
-monstIDF = random.randint(5, 9) * monstILvl
+monstIDF = random.randint(3, 7) * monstILvl
 monstISPD = random.randint(5, 9) * monstILvl
 monstIATK = random.randint(5, 9) * monstILvl
 
-# Leveling System #
-levelMeter = 0.0
-playerLVL = 1
-playerHP = 0
-playerDF = 0
-playerSPD = 0
-playerATK = 0
+## Boss Monsters ##
+bossMonstLvl = random.randint(4, 6)
+bossMonstHP = random.randint(20, 35) * playerLVL
+bossMonstDF = random.randint(3, 7) * playerLVL
+bossMonstSPD = random.randint(5, 9) * playerLVL
+bossMonstATK = random.randint(5, 9) * playerLVL
 
-def lvlStats():
-    global playerHP, playerDF, playerSPD, playerATK
+# Monster Stats Randomizers #
 
-    playerHP = basePlayerHP * playerLVL
-    playerDF = basePlayerDF * playerLVL
-    playerSPD = basePlayerSPD * playerLVL
-    playerATK = basePlayerATK * playerLVL
+def randomizeE():
+    global monstEHP, monstEDF, monstESPD, monstEATK
+    monstEHP = random.randint(15, 30)
+    monstEDF = random.randint(1, 2)
+    monstESPD = random.randint(1, 5)
+    monstEATK = random.randint(1, 5)
 
-    user.lvl = playerLVL
-    user.hp = playerHP
-    user.df = playerDF
-    user.spd = playerSPD
-    user.atk = playerATK
+def randomizeB():
+    global monstBLvl, monstBHP, monstBDF, monstBSPD, monstBATK
+    monstBLvl = random.randint(1, 3)
+    monstBHP = random.randint(15, 30) * monstBLvl
+    monstBDF = random.randint(1, 5) * monstBLvl
+    monstBSPD = random.randint(3, 7) * monstBLvl
+    monstBATK = random.randint(3, 7) * monstBLvl
+
+def randomizeI():
+    global monstILvl, monstIHP, monstIDF, monstISPD, monstIATK
+    monstILvl = random.randint(4, 6)
+    monstIHP = random.randint(20, 35) * monstILvl
+    monstIDF = random.randint(3, 7) * monstILvl
+    monstISPD = random.randint(5, 9) * monstILvl
+    monstIATK = random.randint(5, 9) * monstILvl

@@ -1,6 +1,9 @@
-from .actions.attacks import attacks
+import random
 
-class bossMonsterDict:
+from .actions.attacks import attacks
+import config
+
+class bossMonster:
     def __init__(self, name, lvl, hp, df, spd, atk, TYPE):
         self.name = name
         self.lvl = lvl
@@ -26,15 +29,28 @@ class bossMonsterDict:
 
     def __str__(self):
         return f"{self.name} Level [{self.lvl}]\nHP:[{self.hp}]\nDEF:[{self.df}]\nSPD:[{self.spd}]\nATK:[{self.atk}]\n[[BOSS]]"
-
-    def Attack(self, target, monst):
-        if self.atk < target.df:
-            attacks.ineffectiveAttack()
+    @classmethod
+    def Attack(self, monst, player):
+        config.monsterDefending = False
+        if not config.playerDefending:
+            if monst.atk < player.df:
+                attacks.ineffectiveAttack()
+            elif monst.atk == player.df:
+                attacks.neutralAttack(player, monst, monst)
+            else:
+                attacks.effectiveAttack(player, monst.atk, monst)
         else:
-            attacks.effectiveAttack(target, monst.atk, monst)
+            config.playerDefending = False
+            if player.df < monst.atk:
+                attacks.neutralAttack(player, monst, monst)
+            else:
+                attacks.ineffectiveAttack()
 
-    def Defend(self, dmg, target):
-        if self.df < dmg:
-            attacks.effectiveAttack(self.hp, (self.df - dmg), target)
-        else:
-            attacks.ineffectiveAttack()
+    @classmethod
+    def Defend(self):
+        if config.monsterInit:
+            config.monsterDefending = True
+            config.monsterInit = False
+    @classmethod
+    def RandomOpponentP(self):
+        return bossMonster(self.names[random.randint(0, len(self.names) - 1)], config.bossMonstLvl, config.bossMonstHP, config.bossMonstDF, config.bossMonstSPD, config.bossMonstATK, "boss")
