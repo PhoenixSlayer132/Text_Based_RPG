@@ -1,9 +1,13 @@
 TO DO:
+  - Weak Monsters System
+  - Boss Monsters
   - Save Files
   - Create Application
 
 ONGOING:
-  * Boss Monsters
+  * QoL Changes
+  * Monster Types System
+
 DONE:
   + Continuation
   + Monster Overhaul

@@ -71,5 +71,7 @@ class player:
 
         config.user = player(charName, config.basePlayerLvl, config.basePlayerHP, config.basePlayerDF, config.basePlayerSPD, config.basePlayerATK, "player")
         print(f"\nLets check out our Stats!\n\n{config.user}\n\nIf you ever want to look at your stats,\njust type [Stats] when in battle!")
-        sleep(1.5)
+        sleep(5)
+        print(f"Press enter to begin.")
+        input()
 

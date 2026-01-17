@@ -76,10 +76,10 @@ class battle:
 
         while var:
             choice = str(input("It's Your Turn!\nWould you like to [Attack], [Defend], or [Observe]?\n"))
-            if choice.lower() == "attack":
+            if choice.lower() == "attack" or choice.lower() == 'a':
                 player.Attack(config.opponent, config.user)
                 var = False
-            elif choice.lower() == "defend":
+            elif choice.lower() == "defend" or choice.lower() == "d":
                 config.playerDefending = True
                 if config.playerDefending and not config.monsterDefending:
                     player.Defend()
@@ -89,12 +89,12 @@ class battle:
                     config.playerDefending = False
                     config.monsterDefending = False
                     var = False
-            elif choice.lower() == "observe":
+            elif choice.lower() == "observe" or choice.lower() == "o":
                 player.Observe(config.opponent)
                 var = False
-            elif choice.lower() == "stats":
+            elif choice.lower() == "stats" or choice.lower() == "s":
                 print(f"\n{config.user}\n")
-            elif choice.lower() == "end":
+            elif choice.lower() == "end" or choice.lower() == "132":
                 exit(132)
             else:
                 print("Invalid Choice!")
